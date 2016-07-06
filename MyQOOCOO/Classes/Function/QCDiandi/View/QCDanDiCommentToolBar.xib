@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QCDanDiCommentToolBar">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdJ-10-KDE">
+                    <rect key="frame" x="0.0" y="0.0" width="45" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="YdN-sO-blb"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" image="but_clike.png"/>
+                    <connections>
+                        <action selector="DZBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zg9-Bc-L2d"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6B-jV-p9o">
+                    <rect key="frame" x="45" y="7" width="279" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="gqb-gp-vCg"/>
+                    </constraints>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlQ-FT-Nt1">
+                    <rect key="frame" x="324" y="0.0" width="46" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="nft-sQ-KSl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="发送">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="sendBtnClick" destination="iN0-l3-epB" eventType="touchUpInside" id="FDJ-dW-DHO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MlQ-FT-Nt1" firstAttribute="leading" secondItem="w6B-jV-p9o" secondAttribute="trailing" id="1cp-2e-Ly9"/>
+                <constraint firstAttribute="bottom" secondItem="LdJ-10-KDE" secondAttribute="bottom" id="6zB-C1-UGz"/>
+                <constraint firstItem="MlQ-FT-Nt1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FaS-yK-oyc"/>
+                <constraint firstItem="w6B-jV-p9o" firstAttribute="leading" secondItem="LdJ-10-KDE" secondAttribute="trailing" id="V8i-15-bzq"/>
+                <constraint firstAttribute="trailing" secondItem="MlQ-FT-Nt1" secondAttribute="trailing" constant="5" id="aTc-QR-gLw"/>
+                <constraint firstItem="LdJ-10-KDE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bJE-l3-i0d"/>
+                <constraint firstItem="LdJ-10-KDE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hTQ-5e-ETh"/>
+                <constraint firstItem="w6B-jV-p9o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="vaX-mr-Vkw"/>
+                <constraint firstAttribute="bottom" secondItem="MlQ-FT-Nt1" secondAttribute="bottom" id="w6r-Oq-Wgu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="DZBtn" destination="LdJ-10-KDE" id="uIz-Z1-G3a"/>
+                <outlet property="tf" destination="w6B-jV-p9o" id="Ltt-a0-QMR"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="but_clike.png" width="32" height="32"/>
+    </resources>
+</document>

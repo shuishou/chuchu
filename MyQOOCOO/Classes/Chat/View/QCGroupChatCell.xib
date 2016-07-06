@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="223-y9-jJB" customClass="QCGroupChatCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="223-y9-jJB" id="Ixn-5a-2Zb">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFL-DA-iBH">
+                        <rect key="frame" x="10" y="10" width="55" height="55"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="QvU-s4-dN0">
+                                <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="7hH-Eo-n2c"/>
+                                    <constraint firstAttribute="height" constant="27" id="sBU-gB-ftK"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="bWF-bK-cXb">
+                                <rect key="frame" x="28" y="0.0" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="XUu-IP-TEI"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="eW5-Pu-N5I"/>
+                                    <constraint firstAttribute="width" constant="27" id="rBe-Aq-kQa"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="vHP-3v-YSs"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="fy2-FV-yOx">
+                                <rect key="frame" x="0.0" y="28" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="5pE-ra-kcO"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="cIm-nx-7OP"/>
+                                    <constraint firstAttribute="width" constant="27" id="lkH-2z-bzR"/>
+                                    <constraint firstAttribute="height" constant="27" id="qn1-q5-Yue"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="KWx-BC-yxc">
+                                <rect key="frame" x="28" y="28" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="7Qu-FH-hJ9"/>
+                                    <constraint firstAttribute="height" constant="27" id="P5q-me-SZN"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="27" id="PGs-Q9-p7e"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="27" id="k6U-wZ-1fW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="we5-i3-hZh"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="27" id="zEh-ja-y1Z"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bWF-bK-cXb" secondAttribute="trailing" id="2Yf-JC-Z5a"/>
+                            <constraint firstAttribute="width" constant="55" id="3Kk-Jl-CK7"/>
+                            <constraint firstAttribute="bottom" secondItem="fy2-FV-yOx" secondAttribute="bottom" id="L2u-Pj-t7z"/>
+                            <constraint firstItem="QvU-s4-dN0" firstAttribute="leading" secondItem="cFL-DA-iBH" secondAttribute="leading" id="QYl-y8-ucB"/>
+                            <constraint firstAttribute="bottom" secondItem="KWx-BC-yxc" secondAttribute="bottom" id="bdx-bK-8en"/>
+                            <constraint firstItem="fy2-FV-yOx" firstAttribute="leading" secondItem="cFL-DA-iBH" secondAttribute="leading" id="ckg-Ma-2ip"/>
+                            <constraint firstAttribute="trailing" secondItem="KWx-BC-yxc" secondAttribute="trailing" id="p3W-Y8-GIJ"/>
+                            <constraint firstItem="QvU-s4-dN0" firstAttribute="top" secondItem="cFL-DA-iBH" secondAttribute="top" id="qZc-oP-KFX"/>
+                            <constraint firstAttribute="height" constant="55" id="uqM-Sc-Oft"/>
+                            <constraint firstItem="bWF-bK-cXb" firstAttribute="top" secondItem="cFL-DA-iBH" secondAttribute="top" id="yjN-9e-iFL"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聊天组" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-JT-Do0" customClass="chatting">
+                        <rect key="frame" x="81" y="10" width="229" height="54.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="fl8-JT-Do0" secondAttribute="bottom" constant="10" id="5X8-sU-2Kz"/>
+                    <constraint firstItem="fl8-JT-Do0" firstAttribute="top" secondItem="Ixn-5a-2Zb" secondAttribute="top" constant="10" id="5xD-rm-azK"/>
+                    <constraint firstItem="cFL-DA-iBH" firstAttribute="leading" secondItem="Ixn-5a-2Zb" secondAttribute="leading" constant="10" id="D0f-cE-rSO"/>
+                    <constraint firstItem="fl8-JT-Do0" firstAttribute="leading" secondItem="cFL-DA-iBH" secondAttribute="trailing" constant="16" id="XPx-o5-xhP"/>
+                    <constraint firstAttribute="trailing" secondItem="fl8-JT-Do0" secondAttribute="trailing" constant="10" id="byY-uT-ef5"/>
+                    <constraint firstItem="cFL-DA-iBH" firstAttribute="top" secondItem="Ixn-5a-2Zb" secondAttribute="top" constant="10" id="kVh-oN-IKg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="groupName" destination="fl8-JT-Do0" id="Cnb-gl-1BD"/>
+            </connections>
+            <point key="canvasLocation" x="99" y="273"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="default-avatar_1.png" width="110" height="110"/>
+    </resources>
+</document>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4Gt-ca-2hg" customClass="myInterestCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Gt-ca-2hg" id="i3y-YQ-j9c">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9w-6i-nTR">
+                        <rect key="frame" x="10" y="10" width="55" height="54.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="nYO-Rl-pof">
+                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="Kqd-ZT-PDR"/>
+                                    <constraint firstAttribute="height" constant="28" id="afV-Lc-8Sz"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="7xi-pP-mmZ">
+                                <rect key="frame" x="27" y="0.0" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="4Zh-yg-7kl"/>
+                                    <constraint firstAttribute="width" constant="28" id="fhg-Nx-PJd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="yGX-k6-7Yg">
+                                <rect key="frame" x="0.0" y="26" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="JIv-Oe-1gW"/>
+                                    <constraint firstAttribute="height" constant="28" id="sMA-kz-xfd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmQ-Re-bnF">
+                                <rect key="frame" x="27" y="26" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="3Ww-Zz-JMQ"/>
+                                    <constraint firstAttribute="width" constant="28" id="Gor-Uc-wo6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7xi-pP-mmZ" secondAttribute="trailing" id="3Ty-Up-2NP"/>
+                            <constraint firstAttribute="bottom" secondItem="yGX-k6-7Yg" secondAttribute="bottom" id="B1H-7z-Lzm"/>
+                            <constraint firstAttribute="bottom" secondItem="DmQ-Re-bnF" secondAttribute="bottom" id="Bcg-PJ-mH6"/>
+                            <constraint firstItem="nYO-Rl-pof" firstAttribute="top" secondItem="W9w-6i-nTR" secondAttribute="top" id="Fjl-bu-4XA"/>
+                            <constraint firstAttribute="trailing" secondItem="DmQ-Re-bnF" secondAttribute="trailing" id="Orr-JS-cg0"/>
+                            <constraint firstAttribute="width" constant="55" id="W60-J9-h6J"/>
+                            <constraint firstItem="nYO-Rl-pof" firstAttribute="leading" secondItem="W9w-6i-nTR" secondAttribute="leading" id="cSk-4X-x6Q"/>
+                            <constraint firstItem="7xi-pP-mmZ" firstAttribute="top" secondItem="W9w-6i-nTR" secondAttribute="top" id="ext-gq-Ure"/>
+                            <constraint firstItem="yGX-k6-7Yg" firstAttribute="leading" secondItem="W9w-6i-nTR" secondAttribute="leading" id="xd8-ij-MFg"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="球友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9g-jx-ZWK">
+                        <rect key="frame" x="81" y="0.0" width="239" height="74.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="q9g-jx-ZWK" firstAttribute="leading" secondItem="W9w-6i-nTR" secondAttribute="trailing" constant="16" id="4xI-G7-SAn"/>
+                    <constraint firstAttribute="bottom" secondItem="W9w-6i-nTR" secondAttribute="bottom" constant="10" id="7uo-Za-pAN"/>
+                    <constraint firstItem="W9w-6i-nTR" firstAttribute="top" secondItem="i3y-YQ-j9c" secondAttribute="top" constant="10" id="9CM-tf-wgN"/>
+                    <constraint firstAttribute="trailing" secondItem="q9g-jx-ZWK" secondAttribute="trailing" id="Ld6-bh-MA1"/>
+                    <constraint firstItem="W9w-6i-nTR" firstAttribute="leading" secondItem="i3y-YQ-j9c" secondAttribute="leading" constant="10" id="Rtb-2m-ag0"/>
+                    <constraint firstAttribute="bottom" secondItem="q9g-jx-ZWK" secondAttribute="bottom" id="UQk-7d-mw5"/>
+                    <constraint firstItem="q9g-jx-ZWK" firstAttribute="top" secondItem="i3y-YQ-j9c" secondAttribute="top" id="sx7-ur-1bi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="interestingIcon" destination="W9w-6i-nTR" id="bwt-pJ-ikF"/>
+                <outlet property="interestingName" destination="q9g-jx-ZWK" id="RzJ-DK-kYs"/>
+            </connections>
+            <point key="canvasLocation" x="265" y="255"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="default-avatar_1.png" width="110" height="110"/>
+    </resources>
+</document>

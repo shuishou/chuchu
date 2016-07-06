@@ -1,0 +1,115 @@
+//
+//  QOOCOO.pch
+//  MyQOOCOO
+//
+//  Created by Fly_Fish_King on 15/7/17.
+//  Copyright (c) 2015年 CN.QOOCOO. All rights reserved.
+//
+
+#ifdef __OBJC__
+#define MyQOOCOO_QOOCOO_pch
+
+//字符串的宽度
+#define strSize(str,font) [str boundingRectWithSize:CGSize(MAXFLOAT,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size
+
+/*** 颜色配置 ******************************************************************************************************/
+#define RGBA_COLOR(R, G, B, A) [UIColor colorWithRed:((R) / 255.0f) green:((G) / 255.0f) blue:((B) / 255.0f) alpha:A]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//设置随机颜色
+#define RandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+
+#define color(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+/*** 自定义log ***************************************************************************************/
+#ifdef DEBUG //... 可变参数
+#define  CZLog(...) NSLog(@"%s %d \n %@ \n\n",__func__,__LINE__, [NSString stringWithFormat:__VA_ARGS__]);
+#else
+#define  CZLog(...)
+#endif
+
+#define MethodLog CZLog(@"===");
+
+
+/** 网络请求 ********************************************************************************************** */
+#import "QCHttpTool.h"
+
+/**** 分类扩展 *************************************************************************/
+#import "NSBundle+Extension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "UIColor+Hex.h"
+#import "UIImage+EX.h"
+#import "UIImage+Extension.h"
+#import "UIView+Extension.h"
+#import "UIViewController+NavExtension.h"
+#import "UIViewController+DismissKeyBoard.h"
+#import "UIViewController+HUD.h"
+#import "NSString+Extension.h"
+#import "NSUserDefaults+Extension.h"
+#import "UIViewController+Loading.h"
+#import "UIViewController+PhotoPicker.h"
+#import "NSDate+Common.h"
+#import "NSObject+Common.h"
+#import "NSDate+Format.h"
+#import "chat_config.h"
+#import "UIColor+MyColor.h"
+#import "UIButton+MyButton.h"
+#import "NSString+Validation.h"
+//#import "RecordAudio.h"
+/****** 第三方框架 ********************************************************************/
+//#import ""
+#import "NSDate+MJ.h"
+#import "MF_Base64Additions.h"
+#import "PDKeychainBindings.h"
+//熟悉
+#import "Masonry.h"
+#import "AFNetworking.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+PKX.h"
+#import "MJExtension.h"
+#import "MJPhotoBrowser.h"
+#import "MJRefresh.h"
+#import "JSONKit.h"
+//#import "ChineseString.h"
+//#import "pinyin.h"
+
+//这个是导入哪个头呢?
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "JGProgressHUD.h"
+
+//七牛
+//#import <QiniuSDK.h>
+#import "QiniuSDK.h"
+
+
+//基类
+#import "QCBaseTableVC.h"
+#import "QCBaseVC.h"
+#import "QCBaseTableView.h"
+#import "QCNavigationVC.h"
+//环信
+#import "EaseMob.h"
+
+//工具类
+#import "OMGToast.h"
+#import "NetworkManager.h"
+#import "LoginSession.h"
+#import "ApplicationContext.h"
+#import "MJExtension.h"
+
+
+/****** 全局配置 *****************************************************************************/
+
+//全局配置
+#import "QCGlobalConfig.h"
+#import "GlobalConstant.h"
+#import "HttpURLMacros.h"
+
+//短信配置
+#define smsAppkey @"9889c865e96e"
+#define smsAppSecret @"025b68f203886f1a35cc2f68d9311c4d"
+#define smsZone @"86"
+
+
+
+#endif

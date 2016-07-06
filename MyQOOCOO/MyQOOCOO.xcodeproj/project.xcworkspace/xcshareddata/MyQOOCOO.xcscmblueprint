@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "24194012-69d7-d942-bc4c-4ace6b869971",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "24194012-69d7-d942-bc4c-4ace6b869971" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "24194012-69d7-d942-bc4c-4ace6b869971" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "616B1763-50E2-4A1D-932F-585D56013AC1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "24194012-69d7-d942-bc4c-4ace6b869971" : "ccIOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MyQOOCOO",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "kupai\/MyQOOCOO\/MyQOOCOO.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/192.168.1.119\/svn\/ccIOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "24194012-69d7-d942-bc4c-4ace6b869971"
+    }
+  ]
+}
