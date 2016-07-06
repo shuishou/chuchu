@@ -23,6 +23,7 @@
 #import "QCSearchViewController.h"
 #import "QCUserViewController2.h"
 #import "QCNewSearchVC.h"
+#import "QCCreateTaskViewController.h"
 
 @interface QCFreeController ()
 {
@@ -89,6 +90,18 @@
         [btns2 addTarget:self action:@selector(addMore:) forControlEvents:UIControlEventTouchUpInside];
         
         [topv addSubview:btns2];
+        
+        UIButton *btns3 = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        UIImage *normalImgs3 = [UIImage imageNamed:@"createTask"];
+        
+        [btns3 setImage:normalImgs3 forState:UIControlStateNormal];
+        [btns3 setImage:[UIImage imageNamed:@"createTask"] forState:UIControlStateHighlighted];
+        
+        btns3.frame = CGRectMake(0, (topv.frame.size.height-30)/2, 30, 30);
+        [btns3 addTarget:self action:@selector(createTaskAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [topv addSubview:btns3];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cellClick:) name:kLKCellClickNotification2 object:nil];
@@ -240,6 +253,13 @@
         [self getTypeData];
     }];
 }
+
+-(void)createTaskAction:(id)sender {
+    QCCreateTaskViewController* controller = [[QCCreateTaskViewController alloc] init];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 #pragma mark - setupScrollView
 - (NSMutableArray *)createPageViews{
     NSMutableArray *pageViews = [NSMutableArray array];

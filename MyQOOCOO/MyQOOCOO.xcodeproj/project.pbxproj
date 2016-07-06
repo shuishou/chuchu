@@ -796,6 +796,10 @@
 		A2AB88101C3FCF0B00C1A9E7 /* record_animate_07.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AB87D41C3FCF0A00C1A9E7 /* record_animate_07.png */; };
 		A2AB88111C3FCF0B00C1A9E7 /* record_animate_08.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AB87D51C3FCF0A00C1A9E7 /* record_animate_08.png */; };
 		A2AB88121C3FCF0B00C1A9E7 /* record_animate_09.png in Resources */ = {isa = PBXBuildFile; fileRef = A2AB87D61C3FCF0B00C1A9E7 /* record_animate_09.png */; };
+		AA7B893F1D2D506B00832209 /* createTask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B893D1D2D506B00832209 /* createTask@2x.png */; };
+		AA7B89401D2D506B00832209 /* createTask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B893E1D2D506B00832209 /* createTask@3x.png */; };
+		AA7B89441D2D537F00832209 /* QCCreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7B89421D2D537F00832209 /* QCCreateTaskViewController.m */; };
+		AA7B89451D2D537F00832209 /* QCCreateTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */; };
 		CF1375461BE0C36A009C573E /* HAAnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF13752F1BE0C36A009C573E /* HAAnimationTool.m */; };
 		CF1375471BE0C36A009C573E /* HACursor.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1375311BE0C36A009C573E /* HACursor.m */; };
 		CF1375481BE0C36A009C573E /* HAItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1375331BE0C36A009C573E /* HAItemManager.m */; };
@@ -3195,6 +3199,11 @@
 		A2AB87D41C3FCF0A00C1A9E7 /* record_animate_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_07.png; sourceTree = "<group>"; };
 		A2AB87D51C3FCF0A00C1A9E7 /* record_animate_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_08.png; sourceTree = "<group>"; };
 		A2AB87D61C3FCF0B00C1A9E7 /* record_animate_09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_09.png; sourceTree = "<group>"; };
+		AA7B893D1D2D506B00832209 /* createTask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createTask@2x.png"; sourceTree = "<group>"; };
+		AA7B893E1D2D506B00832209 /* createTask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createTask@3x.png"; sourceTree = "<group>"; };
+		AA7B89411D2D537F00832209 /* QCCreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCCreateTaskViewController.h; sourceTree = "<group>"; };
+		AA7B89421D2D537F00832209 /* QCCreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCCreateTaskViewController.m; sourceTree = "<group>"; };
+		AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QCCreateTaskViewController.xib; sourceTree = "<group>"; };
 		CF13752E1BE0C36A009C573E /* HAAnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAAnimationTool.h; sourceTree = "<group>"; };
 		CF13752F1BE0C36A009C573E /* HAAnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAAnimationTool.m; sourceTree = "<group>"; };
 		CF1375301BE0C36A009C573E /* HACursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACursor.h; sourceTree = "<group>"; };
@@ -4694,6 +4703,7 @@
 		7978BF201C73203F0069E9A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4703,6 +4713,8 @@
 			children = (
 				797E4E611C71B31100A0ABBD /* QCFreeController.h */,
 				797E4E621C71B31100A0ABBD /* QCFreeController.m */,
+				AA7B89411D2D537F00832209 /* QCCreateTaskViewController.h */,
+				AA7B89421D2D537F00832209 /* QCCreateTaskViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -9144,6 +9156,8 @@
 		E8F6C9681B624AF700F307C6 /* 补充 */ = {
 			isa = PBXGroup;
 			children = (
+				AA7B893D1D2D506B00832209 /* createTask@2x.png */,
+				AA7B893E1D2D506B00832209 /* createTask@3x.png */,
 				A27616A21C20161600EADC25 /* add3@2x.png */,
 				A27616A31C20161600EADC25 /* add3@3x.png */,
 				A27616A41C20161600EADC25 /* Diandi_delete3@2x.png */,
@@ -10330,6 +10344,7 @@
 				CF9AD08B1BD4056200DCE17F /* VoiceSearchFeedback011.png in Resources */,
 				CF74C59B1B8C14A500ABB60B /* audio_record.png in Resources */,
 				CF9AD0A11BD4056200DCE17F /* call_out_h.png in Resources */,
+				AA7B89401D2D506B00832209 /* createTask@3x.png in Resources */,
 				CFDFEBCF1BA9218100E43D5F /* ZYQAssetPicker.Bundle in Resources */,
 				CF9AD09C1BD4056200DCE17F /* VoiceSearchFeedback019@2x.png in Resources */,
 				797E4E5C1C71A96000A0ABBD /* icon_ziyouren_pre@3x.png in Resources */,
@@ -10825,6 +10840,7 @@
 				CFD947761B6B3AD900E5D7B2 /* pixel-rounding.js in Resources */,
 				CF9AD0E11BD4056200DCE17F /* chatBar_more_cameraSelected.png in Resources */,
 				E8F6CB361B624AF800F307C6 /* voice_2@2x.png in Resources */,
+				AA7B89451D2D537F00832209 /* QCCreateTaskViewController.xib in Resources */,
 				E8F6CA4F1B624AF800F307C6 /* img_bg@2x.png in Resources */,
 				EECA77B01C3F5DD5001E7EAA /* (null) in Resources */,
 				E8F6CB0D1B624AF800F307C6 /* wumen@3x.png in Resources */,
@@ -10840,6 +10856,7 @@
 				E8F6CAD01B624AF800F307C6 /* 矩形-1@2x.png in Resources */,
 				E8F6CAC41B624AF800F307C6 /* asf-dsaf-dsa@3x.png in Resources */,
 				E8F6CB031B624AF800F307C6 /* bg_woman@3x.png in Resources */,
+				AA7B893F1D2D506B00832209 /* createTask@2x.png in Resources */,
 				A27F00551C2FF39E00518890 /* 日省@2x.png in Resources */,
 				E8F6CA9C1B624AF800F307C6 /* men@3x.png in Resources */,
 				E8F6CA9F1B624AF800F307C6 /* women@2x.png in Resources */,
@@ -11713,6 +11730,7 @@
 				A29579F01C0E969E0031744A /* ZXAI01393xDecoder.m in Sources */,
 				CF8A8D091BA1623300B10A3B /* JGProgressHUDFadeAnimation.m in Sources */,
 				A2957A1A1C0E969E0031744A /* ZXOneDReader.m in Sources */,
+				AA7B89441D2D537F00832209 /* QCCreateTaskViewController.m in Sources */,
 				799660831C813A5D0038A106 /* QCDianDiTableView.m in Sources */,
 				CFDF7B501B818FBC004D6D5F /* QCStragerGroupVC.m in Sources */,
 				A295797F1C0E969E0031744A /* ZXAztecCode.m in Sources */,
