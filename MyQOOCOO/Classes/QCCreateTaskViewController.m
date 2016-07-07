@@ -28,6 +28,7 @@
     UIActionSheet*Figures;
     SDCycleScrollView *cycleScrollView;
     BOOL flag;
+    HACursor *cursor;
 }
 @property (strong,nonatomic) UIScrollView *SetWorkView;
 
@@ -37,12 +38,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.title = @"快速派活";
     self.titles = @[@"发布任务",@"约单",@"进行中",@"待验收",@"返工",@"完工"];
-    HACursor *cursor = [[HACursor alloc]init];
+    cursor = [[HACursor alloc]init];
     //    UIView *fff = [[UIView alloc] initWithFrame:CGRectMake(5, 25, 375, 1)];
     //    fff.backgroundColor = [UIColor blackColor];
     //    [cursor addSubview:fff];
-    cursor.frame = CGRectMake(0, 64, self.view.width,40);
+    cursor.frame = CGRectMake(0, 0, self.view.width,40);
     cursor.backgroundColor = normalTabbarColor;
     cursor.titles = self.titles;
     cursor.pageViews = [self createPageViews];
@@ -61,6 +64,7 @@
     cursor.isGraduallyChangColor = YES;
     [self.view addSubview:cursor];
 }
+
 - (NSMutableArray *)createPageViews{
     NSMutableArray *pageViews = [NSMutableArray array];
     for (NSInteger i = 0; i < self.titles.count; i++) {
@@ -71,6 +75,7 @@
             //            textView.tag = i;
             
             self.SetWorkView = [[UIScrollView alloc] init];
+//            _SetWorkView.backgroundColor = [UIColor redColor];
             self.SetWorkView.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
             self.SetWorkView.delegate = self;
             self.SetWorkView.contentSize = CGSizeMake(Main_Screen_Width, Main_Screen_Height*3);
@@ -162,7 +167,9 @@
     self.picV = [[QCPicScrollView alloc]init];
     CGSize photosSize=[QCPicScrollView photoViewSizeWithPictureCount:self.picArr.count];
     //    CGSize recordSize=[QCrecordView recordViewSizeWithArrCount:self.recordArr.count];
-    
+    if (self.picArr.count == 0) {
+        photosSize = CGSizeMake(self.view.frame.size.width - 20, 160);
+    }
     self.picV.frame=(CGRect){0,15,photosSize.width*self.picArr.count,photosSize.height};
     [ContentView addSubview:self.picV];
     
@@ -179,13 +186,13 @@
     
     
     //添加删除ICON和添加图片ICON
-    UIImageView *DeleteIc = [[UIImageView alloc] initWithFrame:CGRectMake(30, cycleScrollView.frame.size.height-80/2, 80, 80)];
+    UIImageView *DeleteIc = [[UIImageView alloc] initWithFrame:CGRectMake(30, _picV.frame.size.height-80/2, 80, 80)];
     DeleteIc.userInteractionEnabled = YES;
     DeleteIc.image = [UIImage imageNamed:@"fabuicondelete.png"];
     UITapGestureRecognizer *TapDelete = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapDeltBtn)];
     [DeleteIc addGestureRecognizer:TapDelete];
     [ContentView addSubview:DeleteIc];
-    UIImageView *AddIc = [[UIImageView alloc] initWithFrame:CGRectMake(Main_Screen_Width-30-80-20, cycleScrollView.frame.size.height-80/2, 80, 80)];
+    UIImageView *AddIc = [[UIImageView alloc] initWithFrame:CGRectMake(Main_Screen_Width-30-80-20, _picV.frame.size.height-80/2, 80, 80)];
     AddIc.userInteractionEnabled = YES;
     AddIc.image = [UIImage imageNamed:@"fabuicon_Plus.png"];
     UITapGestureRecognizer *TapAddIc = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapAddIcBtn)];
