@@ -63,6 +63,7 @@
         
         UILabel*titleLb=[[UILabel alloc]initWithFrame:CGRectMake((topv.bounds.size.width-90)/2, (topv.frame.size.height-30)/2, 90, 30)];
         titleLb.text=@"自由人";
+//        titleLb.font = [UIFont systemFontOfSize:16];
         titleLb.textColor=UIColorFromRGB(0xed6664);
         titleLb.textAlignment=NSTextAlignmentCenter;
         [topv addSubview:titleLb];

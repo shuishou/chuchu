@@ -40,18 +40,20 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"快速派活";
+    UILabel*titleLb=[[UILabel alloc]initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 90)/2, 0, 90, 30)];
+    titleLb.text=@"快速派活";
+    titleLb.textColor=UIColorFromRGB(0xed6664);
+    titleLb.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = titleLb;
     self.titles = @[@"发布任务",@"约单",@"进行中",@"待验收",@"返工",@"完工"];
-    cursor = [[HACursor alloc]init];
-    //    UIView *fff = [[UIView alloc] initWithFrame:CGRectMake(5, 25, 375, 1)];
-    //    fff.backgroundColor = [UIColor blackColor];
-    //    [cursor addSubview:fff];
+    cursor = [[HACursor alloc]initWithCursorMode];
     cursor.frame = CGRectMake(0, 0, self.view.width,40);
     cursor.backgroundColor = normalTabbarColor;
     cursor.titles = self.titles;
     cursor.pageViews = [self createPageViews];
     //设置根滚动视图的高度
     cursor.rootScrollViewHeight = self.view.frame.size.height -105;
-    cursor.titleNormalColor = [UIColor blackColor];
+    cursor.titleNormalColor = UIColorFromRGB(0x9ca0a9);
     cursor.titleSelectedColor = kGlobalTitleColor;
     //是否显示排序按钮
     cursor.showSortbutton = NO;

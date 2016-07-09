@@ -799,7 +799,14 @@
 		AA7B893F1D2D506B00832209 /* createTask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B893D1D2D506B00832209 /* createTask@2x.png */; };
 		AA7B89401D2D506B00832209 /* createTask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7B893E1D2D506B00832209 /* createTask@3x.png */; };
 		AA7B89441D2D537F00832209 /* QCCreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7B89421D2D537F00832209 /* QCCreateTaskViewController.m */; };
-		AA7B89451D2D537F00832209 /* QCCreateTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */; };
+		AAD054E11D2EC06700867C44 /* HAScrollNavIndicatorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD054E01D2EC06700867C44 /* HAScrollNavIndicatorBar.m */; };
+		AAEDB0581D30782C00DBEFB4 /* QCCursorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEDB0571D30782C00DBEFB4 /* QCCursorButton.m */; };
+		AAEDB05F1D307BDA00DBEFB4 /* curSep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB0591D307BDA00DBEFB4 /* curSep@2x.png */; };
+		AAEDB0601D307BDA00DBEFB4 /* curSep@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB05A1D307BDA00DBEFB4 /* curSep@3x.png */; };
+		AAEDB0611D307BDA00DBEFB4 /* normalCurButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB05B1D307BDA00DBEFB4 /* normalCurButton@2x.png */; };
+		AAEDB0621D307BDA00DBEFB4 /* normalCurButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB05C1D307BDA00DBEFB4 /* normalCurButton@3x.png */; };
+		AAEDB0631D307BDA00DBEFB4 /* selectedCurButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB05D1D307BDA00DBEFB4 /* selectedCurButton@2x.png */; };
+		AAEDB0641D307BDA00DBEFB4 /* selectedCurButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEDB05E1D307BDA00DBEFB4 /* selectedCurButton@3x.png */; };
 		CF1375461BE0C36A009C573E /* HAAnimationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF13752F1BE0C36A009C573E /* HAAnimationTool.m */; };
 		CF1375471BE0C36A009C573E /* HACursor.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1375311BE0C36A009C573E /* HACursor.m */; };
 		CF1375481BE0C36A009C573E /* HAItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1375331BE0C36A009C573E /* HAItemManager.m */; };
@@ -3203,7 +3210,16 @@
 		AA7B893E1D2D506B00832209 /* createTask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createTask@3x.png"; sourceTree = "<group>"; };
 		AA7B89411D2D537F00832209 /* QCCreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCCreateTaskViewController.h; sourceTree = "<group>"; };
 		AA7B89421D2D537F00832209 /* QCCreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCCreateTaskViewController.m; sourceTree = "<group>"; };
-		AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QCCreateTaskViewController.xib; sourceTree = "<group>"; };
+		AAD054DF1D2EC06700867C44 /* HAScrollNavIndicatorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAScrollNavIndicatorBar.h; sourceTree = "<group>"; };
+		AAD054E01D2EC06700867C44 /* HAScrollNavIndicatorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAScrollNavIndicatorBar.m; sourceTree = "<group>"; };
+		AAEDB0561D30782C00DBEFB4 /* QCCursorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QCCursorButton.h; path = ../QCCursorButton.h; sourceTree = "<group>"; };
+		AAEDB0571D30782C00DBEFB4 /* QCCursorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QCCursorButton.m; path = ../QCCursorButton.m; sourceTree = "<group>"; };
+		AAEDB0591D307BDA00DBEFB4 /* curSep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "curSep@2x.png"; sourceTree = "<group>"; };
+		AAEDB05A1D307BDA00DBEFB4 /* curSep@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "curSep@3x.png"; sourceTree = "<group>"; };
+		AAEDB05B1D307BDA00DBEFB4 /* normalCurButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalCurButton@2x.png"; sourceTree = "<group>"; };
+		AAEDB05C1D307BDA00DBEFB4 /* normalCurButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normalCurButton@3x.png"; sourceTree = "<group>"; };
+		AAEDB05D1D307BDA00DBEFB4 /* selectedCurButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectedCurButton@2x.png"; sourceTree = "<group>"; };
+		AAEDB05E1D307BDA00DBEFB4 /* selectedCurButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectedCurButton@3x.png"; sourceTree = "<group>"; };
 		CF13752E1BE0C36A009C573E /* HAAnimationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAAnimationTool.h; sourceTree = "<group>"; };
 		CF13752F1BE0C36A009C573E /* HAAnimationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAAnimationTool.m; sourceTree = "<group>"; };
 		CF1375301BE0C36A009C573E /* HACursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACursor.h; sourceTree = "<group>"; };
@@ -4703,7 +4719,6 @@
 		7978BF201C73203F0069E9A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AA7B89431D2D537F00832209 /* QCCreateTaskViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4711,6 +4726,12 @@
 		7978BF211C7320420069E9A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AAEDB0591D307BDA00DBEFB4 /* curSep@2x.png */,
+				AAEDB05A1D307BDA00DBEFB4 /* curSep@3x.png */,
+				AAEDB05B1D307BDA00DBEFB4 /* normalCurButton@2x.png */,
+				AAEDB05C1D307BDA00DBEFB4 /* normalCurButton@3x.png */,
+				AAEDB05D1D307BDA00DBEFB4 /* selectedCurButton@2x.png */,
+				AAEDB05E1D307BDA00DBEFB4 /* selectedCurButton@3x.png */,
 				797E4E611C71B31100A0ABBD /* QCFreeController.h */,
 				797E4E621C71B31100A0ABBD /* QCFreeController.m */,
 				AA7B89411D2D537F00832209 /* QCCreateTaskViewController.h */,
@@ -6860,6 +6881,10 @@
 				CF1375411BE0C36A009C573E /* icons.bundle */,
 				CF1375421BE0C36A009C573E /* UIColor+RGBA.h */,
 				CF1375431BE0C36A009C573E /* UIColor+RGBA.m */,
+				AAD054DF1D2EC06700867C44 /* HAScrollNavIndicatorBar.h */,
+				AAD054E01D2EC06700867C44 /* HAScrollNavIndicatorBar.m */,
+				AAEDB0561D30782C00DBEFB4 /* QCCursorButton.h */,
+				AAEDB0571D30782C00DBEFB4 /* QCCursorButton.m */,
 			);
 			path = HACursor;
 			sourceTree = "<group>";
@@ -10163,6 +10188,7 @@
 				A27F005A1C2FF39E00518890 /* 添加搜索@3x.png in Resources */,
 				EEC6D1381C2D586800BA3440 /* navBackGround.png in Resources */,
 				A270762D1C488D520010CB58 /* HFrecord_animate_013@2x.png in Resources */,
+				AAEDB0631D307BDA00DBEFB4 /* selectedCurButton@2x.png in Resources */,
 				E8F6CB041B624AF800F307C6 /* certification@2x.png in Resources */,
 				E8F6CB1B1B624AF800F307C6 /* but_addimg@3x.png in Resources */,
 				E8F6CAF51B624AF800F307C6 /* offs@3x.png in Resources */,
@@ -10280,6 +10306,7 @@
 				A2672CA41C17F50F0069FFA2 /* ios-template-152.png in Resources */,
 				E8F6CA561B624AF800F307C6 /* bg_play@3x.png in Resources */,
 				A27076391C488D520010CB58 /* HFrecord_animate_05@2x.png in Resources */,
+				AAEDB0621D307BDA00DBEFB4 /* normalCurButton@3x.png in Resources */,
 				CF9AD07C1BD4056200DCE17F /* VoiceSearchFeedback003@2x.png in Resources */,
 				A26B9C5C1C3E1B1F00F4E738 /* video_longvideo_btn_shoot.png in Resources */,
 				CF9AD1151BD4056200DCE17F /* groupPublicHeader@2x.png in Resources */,
@@ -10399,6 +10426,7 @@
 				A27076961C48F4180010CB58 /* voice_00015@3x.png in Resources */,
 				E8F6CA6E1B624AF800F307C6 /* but_rubber@3x.png in Resources */,
 				E8F6CADB1B624AF800F307C6 /* 组-17@3x.png in Resources */,
+				AAEDB0611D307BDA00DBEFB4 /* normalCurButton@2x.png in Resources */,
 				E8F6CA4B1B624AF800F307C6 /* but_rec@2x.png in Resources */,
 				CF9AD08A1BD4056200DCE17F /* VoiceSearchFeedback010@2x.png in Resources */,
 				EECA77931C3F5D82001E7EAA /* (null) in Resources */,
@@ -10439,6 +10467,7 @@
 				A2AB880A1C3FCF0B00C1A9E7 /* record_animate_014.png in Resources */,
 				A27076A01C48F4180010CB58 /* voice_00020@3x.png in Resources */,
 				A27616A71C20161600EADC25 /* add3@3x.png in Resources */,
+				AAEDB0601D307BDA00DBEFB4 /* curSep@3x.png in Resources */,
 				E8F6CAA91B624AF800F307C6 /* edit@2x.png in Resources */,
 				797E4E5D1C71A96000A0ABBD /* icon_ziyouren@2x.png in Resources */,
 				A27076A31C48F4180010CB58 /* voice_00022@2x.png in Resources */,
@@ -10702,6 +10731,7 @@
 				E8F6CA7B1B624AF800F307C6 /* 8.png in Resources */,
 				A26B9C3D1C3E1B1F00F4E738 /* record_icon_hook@2x.png in Resources */,
 				79B5F2D91C7405A30041183E /* icon_balck_zyr@2x.png in Resources */,
+				AAEDB0641D307BDA00DBEFB4 /* selectedCurButton@3x.png in Resources */,
 				A26B9C5D1C3E1B1F00F4E738 /* video_longvideo_btn_shoot@2x.png in Resources */,
 				A27076271C488D520010CB58 /* HFrecord_animate_010@2x.png in Resources */,
 				E8F6CA8B1B624AF800F307C6 /* but_search@2x.png in Resources */,
@@ -10840,7 +10870,6 @@
 				CFD947761B6B3AD900E5D7B2 /* pixel-rounding.js in Resources */,
 				CF9AD0E11BD4056200DCE17F /* chatBar_more_cameraSelected.png in Resources */,
 				E8F6CB361B624AF800F307C6 /* voice_2@2x.png in Resources */,
-				AA7B89451D2D537F00832209 /* QCCreateTaskViewController.xib in Resources */,
 				E8F6CA4F1B624AF800F307C6 /* img_bg@2x.png in Resources */,
 				EECA77B01C3F5DD5001E7EAA /* (null) in Resources */,
 				E8F6CB0D1B624AF800F307C6 /* wumen@3x.png in Resources */,
@@ -10852,6 +10881,7 @@
 				A27076791C48F4180010CB58 /* voice_00001@2x.png in Resources */,
 				A2672CA71C17F50F0069FFA2 /* ios-template-50.png in Resources */,
 				CF9AD0BB1BD4056200DCE17F /* faceDelete.png in Resources */,
+				AAEDB05F1D307BDA00DBEFB4 /* curSep@2x.png in Resources */,
 				E8F6CAF21B624AF800F307C6 /* no@2x.png in Resources */,
 				E8F6CAD01B624AF800F307C6 /* 矩形-1@2x.png in Resources */,
 				E8F6CAC41B624AF800F307C6 /* asf-dsaf-dsa@3x.png in Resources */,
@@ -11020,6 +11050,7 @@
 				A29579BC1C0E969E0031744A /* ZXDecoderResult.m in Sources */,
 				A2957A1B1C0E969E0031744A /* ZXUPCAReader.m in Sources */,
 				79AD57E71C9800D10030ECA9 /* QCLJListTableViewCell.m in Sources */,
+				AAEDB0581D30782C00DBEFB4 /* QCCursorButton.m in Sources */,
 				CF9AD05D1BD4056200DCE17F /* InvitationManager.m in Sources */,
 				9301FE9B1D0E85D700F80CDE /* RSADataVerifier.m in Sources */,
 				FFA7CA841CB35C9200A8F245 /* MJExtensionConst.m in Sources */,
@@ -11705,6 +11736,7 @@
 				A2957A0B1C0E969E0031744A /* ZXCode128Reader.m in Sources */,
 				CFDFEBC71BA920C500E43D5F /* MessagePhotoView.m in Sources */,
 				934F8B6B1D0C359A001EC2D8 /* QNFile.m in Sources */,
+				AAD054E11D2EC06700867C44 /* HAScrollNavIndicatorBar.m in Sources */,
 				934F8ACE1D0C1801001EC2D8 /* QNHosts.m in Sources */,
 				09EB0FD01BCF5BDC00E9EEE0 /* QCQiNiuUploadHelper.m in Sources */,
 				CF9AD0501BD4056200DCE17F /* GroupSubjectChangingViewController.m in Sources */,

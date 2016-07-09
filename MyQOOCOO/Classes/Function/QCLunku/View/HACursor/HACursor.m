@@ -88,7 +88,9 @@
     _pageViews = pageViews;
     
     self.scrollNavBar.pageViews = pageViews;
+    self.scrollNavIndicatorBar.pageViews = pageViews;
     _scrollNavBar.rootScrollView = self.rootScrollView;
+    _scrollNavIndicatorBar.rootScrollView = self.rootScrollView;
 }
 
 
@@ -98,6 +100,16 @@
         _scrollNavBar.backgroundColor = [UIColor redColor];
     }
     return _scrollNavBar;
+}
+
+- (HAScrollNavIndicatorBar *)scrollNavIndicatorBar{
+    if (!_scrollNavIndicatorBar) {
+        _scrollNavIndicatorBar = [[HAScrollNavIndicatorBar alloc]init];
+        _scrollNavIndicatorBar.backgroundColor = [UIColor redColor];
+        _scrollNavIndicatorBar.titleNormalColor = _titleNormalColor;
+        _scrollNavIndicatorBar.titleSelectedColor = _titleSelectedColor;
+    }
+    return _scrollNavIndicatorBar;
 }
 
 - (UIButton *)sortButton{
@@ -125,6 +137,7 @@
 - (void)setShowSortbutton:(BOOL)showSortbutton{
     _showSortbutton = showSortbutton;
     self.scrollNavBar.isShowSortButton = showSortbutton;
+    self.scrollNavIndicatorBar.isShowSortButton = showSortbutton;
     if (showSortbutton) {
         self.sortButton.hidden = NO;
     }else{
@@ -151,6 +164,7 @@
     [super setBackgroundColor:[UIColor clearColor]];
     self.scrollNavBar.backgroundColor = backgroundColor;
     self.sortButton.backgroundColor = backgroundColor;
+    self.scrollNavIndicatorBar.backgroundColor = backgroundColor;
 }
 
 - (void)setTitles:(NSArray *)titles{
@@ -158,8 +172,8 @@
     NSAssert(!isHaveSameTitle, @"错误！！！不可以包含相同的标题");
     _titles = titles;
 
-#warning -----titles的赋值操作只对HAItemManager进行
     [[HAItemManager shareitemManager] setScrollNavBar:self.scrollNavBar];
+    [[HAItemManager shareitemManager] setScrollNavIndicatorBar:self.scrollNavIndicatorBar];
     [[HAItemManager shareitemManager] setSortItemView:self.sortItmView];
     [[HAItemManager shareitemManager] setItemTitles:(NSMutableArray *)titles];
 }
@@ -167,16 +181,21 @@
 - (void)setTitleNormalColor:(UIColor *)titleNormalColor{
     _titleNormalColor = titleNormalColor;
     self.scrollNavBar.titleNormalColor = titleNormalColor;
+    self.scrollNavIndicatorBar.titleNormalColor = titleNormalColor;
 }
 
 - (void)setTitleSelectedColor:(UIColor *)titleSelectedColor{
     _titleSelectedColor = titleSelectedColor;
     self.scrollNavBar.titleSelectedColor = titleSelectedColor;
+    
+    self.scrollNavIndicatorBar.titleSelectedColor = titleSelectedColor;
 }
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage{
     _backgroundImage = backgroundImage;
     self.scrollNavBar.backgroundImage = backgroundImage;
+    
+    self.scrollNavIndicatorBar.backgroundImage = backgroundImage;
 }
 
 - (void)setIsGraduallyChangColor:(BOOL)isGraduallyChangColor{
@@ -210,6 +229,18 @@
     return self;
 }
 
+- (instancetype)initWithCursorMode
+{
+    self = [super init];
+    if (self) {
+        _cursorMode = YES;
+        _titleNormalColor = UIColorFromRGB(0x9ca0a9);
+        _titleSelectedColor = kGlobalTitleColor;
+        [self setup];
+    }
+    return self;
+}
+
 - (id)initWithTitles:(NSArray *)titles AndPageViews:(NSMutableArray *)pageViews{
     self = [super init];
     if (self) {
@@ -223,7 +254,12 @@
 - (void)setup{
     [self addSubview:self.rootScrollView];
     [self addSubview:self.sortItmView];
-    [self addSubview:self.scrollNavBar];
+    if (_cursorMode) {
+        [self addSubview:self.scrollNavIndicatorBar];
+    }
+    else {
+        [self addSubview:self.scrollNavBar];
+    }
     [self addSubview:self.sortButton];
     [self addSubview:self.confirmButton];
     [self addSubview:self.tipsLabel];
@@ -244,6 +280,7 @@
     self.navBarH            = scrollH;
     CGFloat scrollW         = self.width;
     self.scrollNavBar.frame = CGRectMake(scrollX, scrollY, scrollW, scrollH);
+    self.scrollNavIndicatorBar.frame = CGRectMake(scrollX, scrollY, scrollW, scrollH);
 }
 
 //显示排序按钮的布局
@@ -256,6 +293,7 @@
     CGFloat scrollW          = self.width - scrollH;
     self.scrollNavBar.frame  = CGRectMake(scrollX, scrollY, scrollW, scrollH);
     
+    self.scrollNavIndicatorBar.frame  = CGRectMake(scrollX, scrollY, scrollW, scrollH);
     CGFloat sortItemX        = 0;
     CGFloat sortItemY        = SortItemViewY;
     CGFloat sortItemW        = self.width;
@@ -310,6 +348,9 @@
     self.rootScrollView.userInteractionEnabled = NO;
     self.scrollNavBar.userInteractionEnabled   = NO;
     self.scrollNavBar.isItemHiddenAfterDelet   = YES;
+    self.scrollNavIndicatorBar.userInteractionEnabled   = NO;
+    self.scrollNavIndicatorBar.isItemHiddenAfterDelet   = YES;
+    [self.scrollNavIndicatorBar hiddenAllItems];
     [self.scrollNavBar hiddenAllItems];
 }
 
@@ -320,6 +361,7 @@
     self.tipsLabel.hidden                      = YES;
     self.rootScrollView.userInteractionEnabled = YES;
     self.scrollNavBar.userInteractionEnabled   = YES;
+    self.scrollNavIndicatorBar.userInteractionEnabled   = YES;
 }
 
 - (void)showSortItemView{
@@ -347,7 +389,7 @@
     }
 
     self.scrollNavBar.isItemHiddenAfterDelet = NO;
-
+    self.scrollNavIndicatorBar.isItemHiddenAfterDelet = NO;
     [HAAnimationTool animateWithAnimations:^{
     self.confirmButton.alpha                 = 0;
     } Completion:nil];
@@ -358,6 +400,7 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.scrollNavBar showAllItems];
+        [self.scrollNavIndicatorBar showAllItems];
     });
     
     [HAAnimationTool springAnimateWithAnimations:^{

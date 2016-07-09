@@ -36,6 +36,7 @@
     _titles = titles;
     self.scrollNavBar.itemKeys = titles;
     self.sortItemView.itemKeys = titles;
+    self.scrollNavIndicatorBar.itemKeys = titles;
 }
 
 - (void)removeTitle:(NSString *)title{

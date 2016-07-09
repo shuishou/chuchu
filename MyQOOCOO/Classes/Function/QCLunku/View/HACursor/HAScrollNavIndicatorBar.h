@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HARootScrollView.h"
+#import "QCCursorButton.h"
 
 @interface HAScrollNavIndicatorBar : UIScrollView
 
@@ -17,8 +18,8 @@
 @property (nonatomic, strong) UIImage          *backgroundImage;
 @property (nonatomic, strong) UIColor          *titleNormalColor;
 @property (nonatomic, strong) UIColor          *titleSelectedColor;
-@property (nonatomic, weak  ) UIButton         *currectItem;
-@property (nonatomic, weak  ) UIButton         *oldItem;
+@property (nonatomic, weak  ) QCCursorButton   *currectItem;
+@property (nonatomic, weak  ) QCCursorButton   *oldItem;
 @property (nonatomic, strong) NSMutableArray   *itemKeys;
 @property (nonatomic, strong) NSMutableArray   *pageViews;
 
@@ -31,6 +32,6 @@
 @property(nonatomic,assign)BOOL isfree;
 
 - (void)hiddenAllItems;
-- (void)showAl;
+- (void)showAllItems;
 
 @end

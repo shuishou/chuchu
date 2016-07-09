@@ -10,7 +10,7 @@
 #import "UIView+Extension.h"
 #import "UIColor+RGBA.h"
 #import "HAItemManager.h"
-
+#import "QCCursorButton.h"
 
 #define ItemWidth                 75
 #define FontMinSize               10
@@ -24,28 +24,17 @@
 
 @interface HAScrollNavIndicatorBar()<UIScrollViewDelegate>
 
-@property (nonatomic, weak) UIButton *firstButton;
-@property (nonatomic, weak) UIButton *secButton;
+@property (nonatomic, weak) QCCursorButton *firstButton;
+@property (nonatomic, weak) QCCursorButton *secButton;
 
 @property (nonatomic, strong) NSMutableDictionary *tmpPageViewDic;
 
-#warning --- 以字典来管理item
 @property (nonatomic, strong) NSMutableDictionary *itemsDic;
 @property (nonatomic, strong) NSMutableArray      *tmpKeys;
 
 @property (nonatomic, assign) BOOL                isLayoutitems;
 @property (nonatomic, assign) BOOL                isHiddenAllItem;
 
-@property (nonatomic, assign) CGPoint             beginPoint;
-@property (nonatomic, assign) CGFloat             lastXpoint;
-@property (nonatomic, assign) CGFloat             red1;
-@property (nonatomic, assign) CGFloat             green1;
-@property (nonatomic, assign) CGFloat             blue1;
-@property (nonatomic, assign) CGFloat             alpha1;
-@property (nonatomic, assign) CGFloat             red2;
-@property (nonatomic, assign) CGFloat             green2;
-@property (nonatomic, assign) CGFloat             blue2;
-@property (nonatomic, assign) CGFloat             alpha2;
 @property (nonatomic, assign) NSInteger           currctIndex;
 
 @end
@@ -104,33 +93,8 @@
     _rootScrollView.pageViews = self.pageViews;
 }
 
-- (void)setTitleNormalColor:(UIColor *)titleNormalColor{
-    _titleNormalColor = titleNormalColor;
-    [self.itemsDic enumerateKeysAndObjectsUsingBlock:^(id key, UIButton * button, BOOL *stop) {
-        [button setTitleColor:titleNormalColor forState:UIControlStateNormal];
-    }];
-    
-    RGBA rgba = RGBAFromUIColor(titleNormalColor);
-    self.red1 = rgba.r;
-    self.green1 = rgba.g;
-    self.blue1 = rgba.b;
-    self.alpha1 = rgba.a;
-}
-
-- (void)setTitleSelectedColor:(UIColor *)titleSelectedColor{
-    _titleSelectedColor = titleSelectedColor;
-    [self.itemsDic enumerateKeysAndObjectsUsingBlock:^(id key, UIButton * button, BOOL *stop) {
-        [button setTitleColor:titleSelectedColor forState:UIControlStateSelected];
-    }];
-    RGBA rgba = RGBAFromUIColor(titleSelectedColor);
-    self.red2 = rgba.r;
-    self.green2 = rgba.g;
-    self.blue2 = rgba.b;
-    self.alpha2 = rgba.a;
-}
-
 - (void)setItemsFontWithFontSize:(NSInteger)size{
-    [self.itemsDic enumerateKeysAndObjectsUsingBlock:^(id key, UIButton * obj, BOOL *stop) {
+    [self.itemsDic enumerateKeysAndObjectsUsingBlock:^(id key, QCCursorButton * obj, BOOL *stop) {
         obj.titleLabel.font = [UIFont systemFontOfSize:size];
     }];
 }
@@ -164,13 +128,13 @@
 - (void)setupItems{
     NSInteger itensCount = self.tmpKeys.count;
     for (NSInteger i = 0; i < itensCount; i++) {
-        UIButton *button = [self createItemWithTitle:self.tmpKeys[i]];
+        QCCursorButton *button = [self createItemWithTitle:self.tmpKeys[i]];
+        button.normalColor = self.titleNormalColor;
+        button.selectedColor = self.titleSelectedColor;
         [self.itemsDic setObject:button forKey:self.tmpKeys[i]];
         button.tag = i;
         if (i == 0) {
             button.selected = YES;
-
-            button.titleLabel.font = [UIFont systemFontOfSize:FontDetLeSize + FontMinSize];
             
             _currectItem = button;
         }
@@ -190,22 +154,24 @@
     CGFloat buttonY = self.isItemHiddenAfterDelet ? self.height : 0;
     
     for (NSInteger i = 0; i < itemsCount; i++) {
-        if (i != itemsCount) {
-            NSString *key = self.tmpKeys[i];
-            UIButton *button = [self.itemsDic objectForKey:key];
-            button.tag = i;
-            CGFloat buttonX = i * buttonW;
-            button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
-            self.itemW = buttonW;
+        NSString *key = self.tmpKeys[i];
+        QCCursorButton *button = [self.itemsDic objectForKey:key];
+        button.tag = i;
+        CGFloat buttonX = i * buttonW;
+        CGRect frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+        if(i == 0) {
+            [button adjustFrame:frame mode:0];
         }
+        else if(i == itemsCount - 1) {
+            [button adjustFrame:frame mode:1];
+        }
+        else {
+            [button adjustFrame:frame mode:2];
+        }
+        self.itemW = buttonW;
     }
     
     if (!self.isLayoutitems) {
-
-        NSInteger fontSize = FontDetLeSize + FontDefSize;
-        UIButton *button = [self.itemsDic objectForKey:self.tmpKeys[0]];
-        button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
-        
         self.isLayoutitems = YES;
     }
 }
@@ -224,15 +190,13 @@
     return [self.itemsDic objectForKey:self.tmpKeys[index]];
 }
 
-- (UIButton *)createItemWithTitle:(NSString *)title{
-    UIButton *button = [[UIButton alloc]init];
-    [button setTitle:title forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor clearColor];
-    NSInteger fontSize = FontMinSize;
-    button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
-    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
-    return button;
+- (QCCursorButton *)createItemWithTitle:(NSString *)title{
+    QCCursorButton *cursorButton = [[QCCursorButton alloc] initWithTitle:title];
+//    NSInteger fontSize = FontMinSize;
+//    cursorButton.mainButton.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+    [cursorButton.mainButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:cursorButton];
+    return cursorButton;
 }
 
 - (void)moveToTopAfterDelet:(NSNotification *)notificion{
@@ -276,41 +240,35 @@
     [self.rootScrollView setContentOffset:CGPointMake(0, 0)];
 }
 
-- (void)clickButtonWhenNotGraduallyChangFont:(UIButton *)button{
+- (void)clickButtonWhenNotGraduallyChangFont:(QCCursorButton *)button{
     _oldItem = _currectItem;
-    _oldItem.titleLabel.font = [UIFont systemFontOfSize:FontMinSize];
     
     _currectItem.selected = NO;
     button.selected = YES;
     _currectItem = button;
-    
-
-    _currectItem.titleLabel.font = [UIFont systemFontOfSize:FontDetLeSize + FontDefSize];
-    
 }
 
 - (void)buttonClick:(UIButton *)button{
-    [self clickButtonWhenNotGraduallyChangFont:button];
+    QCCursorButton* cursorButton = (QCCursorButton*)button.superview;
+    [self clickButtonWhenNotGraduallyChangFont:cursorButton];
     
-    CGFloat offX = button.tag * self.rootScrollView.width;
+    CGFloat offX = cursorButton.tag * self.rootScrollView.width;
     //    NSLog(@"off ---> %f",offX);
-    [self buttonMoveAnimationWithIndex:button.tag];
+    [self buttonMoveAnimationWithIndex:cursorButton.tag];
     [self.rootScrollView setContentOffset:CGPointMake(offX, 0) animated:YES];
 }
 
-- (void)selectItemWhenNotGraduallyChangFont:(UIButton *)button{
+- (void)selectItemWhenNotGraduallyChangFont:(QCCursorButton *)button{
     _oldItem = _currectItem;
-    _oldItem.titleLabel.font = [UIFont systemFontOfSize:FontMinSize];
     
     _currectItem.selected = NO;
     button.selected = YES;
     _currectItem = button;
 
-    _currectItem.titleLabel.font = [UIFont systemFontOfSize:FontDetLeSize + FontDefSize];
 }
 
 - (void)setSelectItemWithIndex:(NSInteger)index{
-    UIButton *button = [self.itemsDic objectForKey:self.tmpKeys[index]];
+    QCCursorButton *button = [self.itemsDic objectForKey:self.tmpKeys[index]];
     [self selectItemWhenNotGraduallyChangFont:button];
     [self buttonMoveAnimationWithIndex:index];
 }
@@ -332,20 +290,9 @@
     }
 }
 
-#pragma mark  渐变 动画相关
-- (void)setItemFontColorWithFrontItem:(UIButton *)frontItem AndBackItem:(UIButton *)backItem andPrecent:(CGFloat)p{
-
-}
-
-- (void)setItemFontSizeWithFrontItem:(UIButton *)frontItem AndBackItem:(UIButton *)backItem andPrecent:(CGFloat)p{
-}
-
 - (void)setupNormalFontSizeItem{
-    self.firstButton.titleLabel.font = [UIFont systemFontOfSize:FontDefSize];
-    self.secButton.titleLabel.font = [UIFont systemFontOfSize:FontDefSize];
-    
-    [self.firstButton setTitleColor:self.titleNormalColor forState:UIControlStateNormal];
-    [self.secButton setTitleColor:self.titleNormalColor forState:UIControlStateNormal];
+//    self.firstButton.titleLabel.font = [UIFont systemFontOfSize:FontDefSize];
+//    self.secButton.titleLabel.font = [UIFont systemFontOfSize:FontDefSize];
 }
 
 - (void)changeButtonFontWithOffset:(CGFloat)offset andWidth:(CGFloat)width{
@@ -364,9 +311,6 @@
     
     self.firstButton = [self.itemsDic objectForKey:self.tmpKeys[index]];
     self.secButton   = (index + 1 < self.tmpKeys.count) ? [self.itemsDic objectForKey:self.tmpKeys[index + 1]] : nil;
-    
-    [self setItemFontSizeWithFrontItem:self.firstButton AndBackItem:self.secButton andPrecent:p];
-    [self setItemFontColorWithFrontItem:self.firstButton AndBackItem:self.secButton andPrecent:p];
 }
 
 - (void)hiddenAllItems{
