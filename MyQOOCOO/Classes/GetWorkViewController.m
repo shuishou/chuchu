@@ -25,13 +25,14 @@
     SDCycleScrollView *cycleScrollView;
 }
 @property (strong,nonatomic) UIScrollView *SetWorkView;
-
+@property (assign, nonatomic) BOOL showList;
 @end
 
 @implementation GetWorkViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _showList = false;
     self.titles = @[@"发布技能",@"约单",@"进行中",@"待验收",@"返工",@"完工"];
     HACursor *cursor = [[HACursor alloc]init];
 //    UIView *fff = [[UIView alloc] initWithFrame:CGRectMake(5, 25, 375, 1)];
@@ -86,21 +87,15 @@
     }
     return pageViews;
 }
-BOOL flag;
-- (void)ClickSetWorkBtn{
-    
-    if (flag) {
-        ContentView.hidden = YES;
-        PriceView.hidden = YES;
-        SendBtn.hidden = YES;
-        tableVIew.hidden = NO;
-        flag *= -1;
-    }else{
-        ContentView.hidden = NO;
-        PriceView.hidden = NO;
-        SendBtn.hidden = NO;
-        tableVIew.hidden = YES;
-        flag = 1;
+
+- (void)clickSetWorkBtn:(UIButton*)sender{
+    _showList = !_showList;
+    sender.selected = _showList;
+    if (_showList) {
+        
+    }
+    else {
+        
     }
 }
 - (void)createHasUI{
@@ -117,7 +112,7 @@ BOOL flag;
     SetWorkBtn.frame = CGRectMake(10, 10, 80, 40);
     [SetWorkBtn setTitle:@"发布任务" forState:UIControlStateNormal];
     [SetWorkBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [SetWorkBtn addTarget:self action:@selector(ClickSetWorkBtn) forControlEvents:UIControlEventTouchUpInside];
+    [SetWorkBtn addTarget:self action:@selector(clickSetWorkBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.SetWorkView addSubview:SetWorkBtn];
     
     //内容

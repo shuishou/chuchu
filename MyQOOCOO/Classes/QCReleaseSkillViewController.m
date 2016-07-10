@@ -6,7 +6,7 @@
 //  Copyright © 2016年 CN.QOOCOO. All rights reserved.
 //
 
-#import "QCCreateTaskViewController.h"
+#import "QCReleaseSkillViewController.h"
 #import "HACursor.h"
 #import "diaomaoViewController.h"
 #import "NSString+WPAttributedMarkup.h"
@@ -14,13 +14,13 @@
 #import "WPHotspotLabel.h"
 #import "fdafViewController.h"
 #import "SDCycleScrollView.h"
-#import "QCAddUserMarkVC.h"
+#import "QCAddUserMarkVC.h"s
 
-@interface QCCreateTaskViewController ()
+@interface QCReleaseSkillViewController ()
 
 @end
 
-@interface QCCreateTaskViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,captureViewControllerDelegate,UIActionSheetDelegate>
+@interface QCReleaseSkillViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,captureViewControllerDelegate,UIActionSheetDelegate>
 {
     NSMutableArray *scrollimages;
     UIView *ContentView;
@@ -29,33 +29,25 @@
     UITableView *tableVIew;
     UIActionSheet*Figures;
     SDCycleScrollView *cycleScrollView;
+    BOOL flag;
     HACursor *cursor;
 }
 @property (strong,nonatomic) UIScrollView *SetWorkView;
-@property (assign, nonatomic) BOOL showList;
-@property (assign, nonatomic) BOOL isOffline;
-@property (strong,nonatomic) UIView *hostView;
-@property (strong,nonatomic) UILabel *addrTitleLabel;
-@property (strong,nonatomic) UILabel *addrValueLabel;
-@property (strong,nonatomic) UIButton *onlineButton;
-@property (strong,nonatomic) UIButton *offlineButton;
-@property (strong,nonatomic) WPHotspotLabel *hintLabel;
-@property (strong,nonatomic) UIButton *freeReleaseButton;
+
 @end
 
-@implementation QCCreateTaskViewController
+@implementation QCReleaseSkillViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"快速派活";
+    self.title = @"快速接活";
     UILabel*titleLb=[[UILabel alloc]initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 90)/2, 0, 90, 30)];
-    titleLb.text=@"快速派活";
-    _isOffline = NO;
+    titleLb.text=@"快速接活";
     titleLb.textColor=UIColorFromRGB(0xed6664);
     titleLb.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = titleLb;
-    self.titles = @[@"发布任务",@"约单",@"进行中",@"待验收",@"返工",@"完工"];
+    self.titles = @[@"发布技能",@"约单",@"进行中",@"待验收",@"返工",@"完工"];
     cursor = [[HACursor alloc]initWithCursorMode];
     cursor.frame = CGRectMake(0, 0, self.view.width,40);
     cursor.backgroundColor = normalTabbarColor;
@@ -85,27 +77,23 @@
             //            textView.delegate = self;
             //            textView.dataSource = self;
             //            textView.tag = i;
-            self.hostView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height -64)];
-//            _hostView.backgroundColor = [UIColor redColor];
-
-            [pageViews addObject:_hostView];
+            
+            self.SetWorkView = [[UIScrollView alloc] init];
+//            _SetWorkView.backgroundColor = [UIColor redColor];
+            self.SetWorkView.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
+            self.SetWorkView.delegate = self;
+            self.SetWorkView.contentSize = CGSizeMake(Main_Screen_Width, Main_Screen_Height*3);
+            //            self.SetWorkView.pagingEnabled = YES;
+            self.SetWorkView.scrollEnabled = YES;
+            [pageViews addObject:self.SetWorkView];
             
             [self createWorkUI];
             [self createHasUI];
-            if (_showList) {
-                _SetWorkView.hidden = YES;
-                tableVIew.hidden = NO;
-            }
-            else {
-                _SetWorkView.hidden = NO;
-                tableVIew.hidden = YES;
-            }
             
         }else{
             //            diaomaoViewController*diaomao = [[diaomaoViewController alloc] init];
             //            [pageViews addObject:diaomao];
             UIView *vief = [[UIView alloc] init];
-//            vief.backgroundColor = [UIColor redColor];
             [pageViews addObject:vief];
         }
         
@@ -113,57 +101,43 @@
     return pageViews;
 }
 
-
-- (void)clickSetWorkBtn:(UIButton*)sender{
-    _showList = !_showList;
-    sender.selected = _showList;
-    if (_showList) {
-        _SetWorkView.hidden = YES;
+- (void)ClickSetWorkBtn{
+    
+    if (flag) {
+        ContentView.hidden = YES;
+        PriceView.hidden = YES;
+        SendBtn.hidden = YES;
         tableVIew.hidden = NO;
-    }
-    else {
-        _SetWorkView.hidden = NO;
+        flag *= -1;
+    }else{
+        ContentView.hidden = NO;
+        PriceView.hidden = NO;
+        SendBtn.hidden = NO;
         tableVIew.hidden = YES;
+        flag = 1;
     }
 }
-
 - (void)createHasUI{
-    tableVIew = [[UITableView alloc] initWithFrame:CGRectMake(0, 38, Main_Screen_Width, Main_Screen_Height - 38 - 64 - 45)];
+    tableVIew = [[UITableView alloc] initWithFrame:CGRectMake(0, SendBtn.frame.origin.y+SendBtn.frame.size.height + 10, Main_Screen_Width, Main_Screen_Height)];
     tableVIew.delegate = self;
     tableVIew.dataSource = self;
-    [self.hostView addSubview:tableVIew];
+    [self.SetWorkView addSubview:tableVIew];
 }
 - (void)createWorkUI{
     
+    
     //发布任务^
-    self.SetWorkView = [[UIScrollView alloc] init];
-    //            _SetWorkView.backgroundColor = [UIColor redColor];
-    self.SetWorkView.frame = CGRectMake(0, 38, Main_Screen_Width, Main_Screen_Height - 38 - 64 - 45);
-    self.SetWorkView.delegate = self;
-    //            self.SetWorkView.pagingEnabled = YES;
-    self.SetWorkView.scrollEnabled = YES;
-    
     UIButton *SetWorkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    SetWorkBtn.frame = CGRectMake(10, 16, 68, 16);
+    SetWorkBtn.frame = CGRectMake(10, 8, 50, 30);
     [SetWorkBtn setTitle:@"发布任务" forState:UIControlStateNormal];
-    [SetWorkBtn setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
-    [SetWorkBtn addTarget:self action:@selector(clickSetWorkBtn:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [SetWorkBtn setImage:[UIImage imageNamed:@"showList"] forState:UIControlStateNormal];
-    [SetWorkBtn setImage:[UIImage imageNamed:@"showRelease"] forState:UIControlStateSelected];
+    SetWorkBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     SetWorkBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    SetWorkBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [SetWorkBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [SetWorkBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    [SetWorkBtn setImageEdgeInsets:UIEdgeInsetsMake(2, 54, 0, 0)];
-    [SetWorkBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -9 , 0, 0)];
+    [SetWorkBtn setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
+    [SetWorkBtn addTarget:self action:@selector(ClickSetWorkBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.SetWorkView addSubview:SetWorkBtn];
     
-    
-    [self.hostView addSubview:SetWorkBtn];
-    
-    [self.hostView addSubview:_SetWorkView];
     //内容
-    ContentView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, Main_Screen_Width-20, 500)];
+    ContentView = [[UIView alloc] initWithFrame:CGRectMake(10, 38, Main_Screen_Width-20, 500)];
     ContentView.userInteractionEnabled = YES;
     ContentView.backgroundColor = [UIColor whiteColor];
     ContentView.layer.cornerRadius = 8;
@@ -275,7 +249,7 @@
     textViewHintLabel.numberOfLines = 0;
     textViewHintLabel.text = @"详细描述: \n1.技能介绍 \n2.技能内容 \n3.服务时间\n\n0/250";
     //添加价格
-    PriceView = [[UIView alloc] initWithFrame:CGRectMake(10, ContentView.frame.size.height + 15, Main_Screen_Width - 20, 470)];
+    PriceView = [[UIView alloc] initWithFrame:CGRectMake(10, ContentView.frame.size.height + 65, Main_Screen_Width - 20, 403)];
     PriceView.userInteractionEnabled = YES;
     PriceView.backgroundColor = [UIColor whiteColor];
     PriceView.layer.cornerRadius = 8;
@@ -367,89 +341,44 @@
     sepratePriceImageView.contentMode = UIViewContentModeScaleAspectFill;
     [PriceView addSubview:sepratePriceImageView];
     
-    UILabel *expireTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 340, 40, 16)];
-    expireTitleLabel.textColor = UIColorFromRGB(0x9ca0a9);
-    expireTitleLabel.font = [UIFont systemFontOfSize:12];
-    expireTitleLabel.text = @"工期至";
-    expireTitleLabel.textAlignment = NSTextAlignmentLeft;
-    [PriceView addSubview:expireTitleLabel];
+    UIButton* onlineButton = [[UIButton alloc] initWithFrame:CGRectMake(((Main_Screen_Width - 20) * 0.5 - 60) * 0.5, 300 + 103 * 0.5 - 50 * 0.5, 60, 50)];
     
-    UIButton* dateButton = [[UIButton alloc] initWithFrame:CGRectMake((Main_Screen_Width - 20 - 156 ) * 0.5, 331,156, 35)];
-//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy年  MM月    dd日"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Shanghai"]];
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-//    NSDate *formattedDate = [dateFormatter dateFromString:dateString];
+    UIButton* offlineButton = [[UIButton alloc] initWithFrame:CGRectMake(Main_Screen_Width - 20 - 60 -((Main_Screen_Width - 20) * 0.5 - 32) * 0.5, 300 + 103 * 0.5 - 50 * 0.5, 60, 50)];
     
-    [dateButton setTitle:dateString forState:UIControlStateNormal];
-    dateButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    dateButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [dateButton setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
-    dateButton.clipsToBounds = YES;
-    dateButton.layer.cornerRadius = 4;
-    dateButton.layer.masksToBounds = YES;
-    dateButton.layer.borderWidth = 1;
-    dateButton.layer.borderColor = UIColorFromRGB(0x9ca0a9).CGColor;
-    [PriceView addSubview:dateButton];
-    
-    self.onlineButton = [[UIButton alloc] initWithFrame:CGRectMake(((Main_Screen_Width - 20) * 0.5 - 60) * 0.5, 340 + 48, 60, 50)];
-    
-    self.offlineButton = [[UIButton alloc] initWithFrame:CGRectMake(Main_Screen_Width - 20 - 60 -((Main_Screen_Width - 20) * 0.5 - 32) * 0.5, 340 + 48, 60, 50)];
-    
-    [_onlineButton setImage:[UIImage imageNamed:@"online"] forState:UIControlStateNormal];
-    [_onlineButton setImage:[UIImage imageNamed:@"online_h"] forState:UIControlStateSelected];
-    [_onlineButton setTitle:@"线上合作" forState:UIControlStateNormal];
-    _onlineButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_onlineButton setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
-    _onlineButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [onlineButton setImage:[UIImage imageNamed:@"online"] forState:UIControlStateNormal];
+    [onlineButton setImage:[UIImage imageNamed:@"online_h"] forState:UIControlStateSelected];
+    [onlineButton setTitle:@"线上合作" forState:UIControlStateNormal];
+    onlineButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [onlineButton setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
+    onlineButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
 //    [onlineButton setBackgroundColor:[UIColor redColor]];
-    [_onlineButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [_onlineButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    [_onlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
-    [_onlineButton setTitleEdgeInsets:UIEdgeInsetsMake(32, -26 , 0, 0)];
+    [onlineButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [onlineButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+    [onlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
+    [onlineButton setTitleEdgeInsets:UIEdgeInsetsMake(32, -26 , 0, 0)];
 
-    [_offlineButton setImage:[UIImage imageNamed:@"offline"] forState:UIControlStateNormal];
+    [offlineButton setImage:[UIImage imageNamed:@"offline"] forState:UIControlStateNormal];
     
-    [_offlineButton setImage:[UIImage imageNamed:@"offline_h"] forState:UIControlStateSelected];
+    [offlineButton setImage:[UIImage imageNamed:@"offline_h"] forState:UIControlStateSelected];
     
-    [_offlineButton setTitle:@"线下合作" forState:UIControlStateNormal];
-    _offlineButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_offlineButton setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
-    _offlineButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [offlineButton setTitle:@"线下合作" forState:UIControlStateNormal];
+    offlineButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [offlineButton setTitleColor:UIColorFromRGB(0x9ca0a9) forState:UIControlStateNormal];
+    offlineButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
 //    [offlineButton setBackgroundColor:[UIColor redColor]];
-    [_offlineButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [_offlineButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    [_offlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
-    [_offlineButton setTitleEdgeInsets:UIEdgeInsetsMake(32, -26 , 0, 0)];
+    [offlineButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [offlineButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+    [offlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
+    [offlineButton setTitleEdgeInsets:UIEdgeInsetsMake(32, -26 , 0, 0)];
     
-    _onlineButton.selected = YES;
-    [PriceView addSubview:_onlineButton];
-    [PriceView addSubview:_offlineButton];
-    _onlineButton.tag = 1;
-    _offlineButton.tag = 2;
-    [_onlineButton addTarget:self action:@selector(negoiationAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_offlineButton addTarget:self action:@selector(negoiationAction:) forControlEvents:UIControlEventTouchUpInside];
+    onlineButton.selected = YES;
+    [PriceView addSubview:onlineButton];
+    [PriceView addSubview:offlineButton];
     
-    _addrTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 340 + 100 + 20, 50, 16)];
-    _addrTitleLabel.textColor = UIColorFromRGB(0x9ca0a9);
-    _addrTitleLabel.font = [UIFont systemFontOfSize:12];
-    _addrTitleLabel.text = @"合作地址";
-    _addrTitleLabel.textAlignment = NSTextAlignmentLeft;
-    [PriceView addSubview:_addrTitleLabel];
-    
-    _addrValueLabel = [[UILabel alloc] initWithFrame:CGRectMake((Main_Screen_Width - 20 - 156) * 0.5, 460, 156, 16)];
-    _addrValueLabel.textColor = UIColorFromRGB(0x9ca0a9);
-    _addrValueLabel.font = [UIFont systemFontOfSize:12];
-    _addrValueLabel.text = @"111";
-    _addrValueLabel.textAlignment = NSTextAlignmentCenter;
-    [PriceView addSubview:_addrValueLabel];
-    _addrTitleLabel.hidden = YES;
-    _addrValueLabel.hidden = YES;
-    _hintLabel = [[WPHotspotLabel alloc] initWithFrame:CGRectMake((Main_Screen_Width - 208) / 2.0, PriceView.frame.size.height+PriceView.frame.origin.y + 15, 208, 34)];
-    _hintLabel.numberOfLines = 0;
-    _hintLabel.backgroundColor = [UIColor clearColor];
-    [self.SetWorkView addSubview:_hintLabel];
+    WPHotspotLabel *hintLabel = [[WPHotspotLabel alloc] initWithFrame:CGRectMake((Main_Screen_Width - 208) / 2.0, PriceView.frame.size.height+PriceView.frame.origin.y + 15, 208, 34)];
+    hintLabel.numberOfLines = 0;
+    hintLabel.backgroundColor = [UIColor clearColor];
+    [self.SetWorkView addSubview:hintLabel];
     __weak __typeof(&*self)weakSelf = self;
     NSDictionary* style = @{@"body":[UIFont fontWithName:@"HelveticaNeue" size:10.0],
                             @"help":[WPAttributedStyleAction styledActionWithAction:^{
@@ -459,10 +388,10 @@
                                 NSLog(@"Settings action");
                             }],
                             @"link": UIColorFromRGB(0x2d91ee)};
-    _hintLabel.textColor = UIColorFromRGB(0x999999);
+    hintLabel.textColor = UIColorFromRGB(0x999999);
 //    hintLabel.backgroundColor = [UIColor redColor];
-    _hintLabel.attributedText = [@"同意<help>《合作协议》</help>每次合作平台将收取5%佣金\n预付款分为70%货款和30%保证金" attributedStringWithStyleBook:style];
-    [self.SetWorkView addSubview:_hintLabel];
+    hintLabel.attributedText = [@"同意<help>《合作协议》</help>每次合作平台将收取5%佣金\n预付款分为70%货款和30%保证金" attributedStringWithStyleBook:style];
+    [self.SetWorkView addSubview:hintLabel];
     //发布
     CGFloat sepWidth = (Main_Screen_Width - 100 - 156) / 3.0;
     SendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -475,17 +404,16 @@
     SendBtn.clipsToBounds = YES;
     [self.SetWorkView addSubview:SendBtn];
     
-    _freeReleaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _freeReleaseButton.frame = CGRectMake(sepWidth, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 100, 45);
+    UIButton* freeReleaseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    freeReleaseBtn.frame = CGRectMake(sepWidth, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 100, 45);
 //    [freeReleaseBtn setTitle:@"免费发布" forState:UIControlStateNormal];
-    [_freeReleaseButton setImage:[UIImage imageNamed:@"freeRelease"] forState:UIControlStateNormal];
+    [freeReleaseBtn setImage:[UIImage imageNamed:@"freeRelease"] forState:UIControlStateNormal];
 //    freeReleaseBtn.backgroundColor = kGlobalTitleColor;
-    [_freeReleaseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _freeReleaseButton.layer.cornerRadius = 25;
-    _freeReleaseButton.clipsToBounds = YES;
-    [self.SetWorkView addSubview:_freeReleaseButton];
+    [freeReleaseBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    freeReleaseBtn.layer.cornerRadius = 25;
+    freeReleaseBtn.clipsToBounds = YES;
+    [self.SetWorkView addSubview:freeReleaseBtn];
     
-    self.SetWorkView.contentSize = CGSizeMake(Main_Screen_Width, PriceView.frame.size.height+PriceView.frame.origin.y + 80 + 80);
 }
 #pragma mark - 删除内容图片
 - (void)TapDeltBtn{
@@ -502,55 +430,15 @@
     
 }
 
--(void)negoiationAction:(UIButton*)button {
-    if (button.tag == 1) {
-        if (_isOffline == YES) {
-            
-            PriceView.frame = CGRectMake(10, ContentView.frame.size.height + 15, Main_Screen_Width - 20, 470);
-            self.SetWorkView.contentSize = CGSizeMake(Main_Screen_Width, PriceView.frame.size.height+PriceView.frame.origin.y + 80 + 80);
-            _isOffline = NO;
-            _onlineButton.selected = YES;
-            _offlineButton.selected = NO;
-            CGFloat sepWidth = (Main_Screen_Width - 100 - 156) / 3.0;
-            SendBtn.frame = CGRectMake(2 * sepWidth + 100, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 156, 45);
-            _freeReleaseButton.frame = CGRectMake(sepWidth, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 100, 45);
-            _hintLabel.frame = CGRectMake((Main_Screen_Width - 208) / 2.0, PriceView.frame.size.height+PriceView.frame.origin.y + 15, 208, 34);
-            _addrTitleLabel.hidden = YES;
-            _addrValueLabel.hidden = YES;
-        }
-    }
-    else if (button.tag == 2) {
-        if (_isOffline == NO) {
-            _addrTitleLabel.hidden = NO;
-            _addrValueLabel.hidden = NO;
-            PriceView.frame = CGRectMake(10, ContentView.frame.size.height + 15, Main_Screen_Width - 20, 470 + 40);
-            self.SetWorkView.contentSize = CGSizeMake(Main_Screen_Width, PriceView.frame.size.height+PriceView.frame.origin.y + 80 + 80);
-            _isOffline = YES;
-            _onlineButton.selected = NO;
-            _offlineButton.selected = YES;
-            CGFloat sepWidth = (Main_Screen_Width - 100 - 156) / 3.0;
-            SendBtn.frame = CGRectMake(2 * sepWidth + 100, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 156, 45);
-            _freeReleaseButton.frame = CGRectMake(sepWidth, PriceView.frame.size.height+PriceView.frame.origin.y + 80, 100, 45);
-            
-            _hintLabel.frame = CGRectMake((Main_Screen_Width - 208) / 2.0, PriceView.frame.size.height+PriceView.frame.origin.y + 15 + 10, 208, 34);
-        }
-    }
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 100;
+    return 10;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableVIew dequeueReusableCellWithIdentifier:@"fdfdfd"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fdfdfd"];
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 50, 44)];
-        label.tag = 1;
-        [cell addSubview:label];
     }
-    UILabel* label = (UILabel*)[cell viewWithTag:1];
-    label.text = @"test";
     return cell;
 }
 - (void)didReceiveMemoryWarning {
